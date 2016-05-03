@@ -1,5 +1,5 @@
 // Page header
-#front-hero {
+.hero {
 	.marketing {
 		@include grid-row();
 		max-width: 55rem;
@@ -22,59 +22,6 @@
 		background-position: center;
 		height: rem-calc(685);
 		margin: 0 0 rem-calc(72);
-	}
-
-	#watch {
-
-		@include breakpoint(small) {
-			@include grid-column(7);
-			@include grid-column-position(-5);
-		}
-
-		@include breakpoint(medium) {
-			@include grid-column(12);
-			@include grid-column-position(0);
-		}
-
-		section {
-			display: inline;
-		}
-
-		a {
-			color: #B4C9D1;
-			cursor: pointer;
-			font-weight: 400;
-			margin-right: rem-calc(20);
-		}
-
-		a:hover {
-			color: #fff;
-		}
-
-		#stargazers {
-			:before {
-				content: "\f09b";
-				font-family: FontAwesome;
-				font-style: normal;
-				font-weight: normal;
-				text-decoration: inherit;
-				color: #B4C9D1;
-				margin-right: rem-calc(8);
-			}
-		}
-
-		#twitter {
-			:before {
-				content: "\f099";
-				font-family: FontAwesome;
-				font-style: normal;
-				font-weight: normal;
-				text-decoration: inherit;
-				color: #B4C9D1;
-				margin-right: rem-calc(8);
-			}
-		}
-
 	}
 
 	.tagline {
