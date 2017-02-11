@@ -1,15 +1,15 @@
 //  Settings
 @import 'global/settings'; // Foundation settings file.
 // Foundation mixins & browser resets
-@import '../components/foundation-sites/scss/foundation';
+@import './node_modules/foundation-sites/scss/foundation';
 // WP overrides
 @import 'global/wp-admin'; // Fix issues with wp-admin bar positioning
 @import 'global/wp-overrides'; // Override the default WordPress styling for some elements
 @import 'global/accessibility';
 
 // Third-party libraries
-@import 'font-awesome';
-@import 'motion-ui';
+@import './node_modules/font-awesome/scss/font-awesome';
+@import './node_modules/motion-ui/motion-ui';
 // Foundation global styles
 @include foundation-global-styles;
 // Individual foundation components

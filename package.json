@@ -17,10 +17,7 @@
   "bugs": "https://github.com/olefredrik/FoundationPress/issues",
   "license": "MIT",
   "main": "gulpfile.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/olefredrik/FoundationPress.git"
-  },
+  "repository": "https://github.com/olefredrik/FoundationPress.git",
   "devDependencies": {
     "autoprefixer": "^6.1.0",
     "babel-core": "^6.5.2",
@@ -41,6 +38,8 @@
     "colors": "^1.1.2",
     "dateformat": "^1.0.12",
     "del": "^2.2.0",
+    "font-awesome": "^4.7.0",
+    "foundation-sites": "^6.3.0",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-babel": "^6.1.2",
@@ -62,7 +61,7 @@
     "gulp-zip": "^3.0.2",
     "jshint": "^2.8.0",
     "merge-stream": "^1.0.0",
-    "motion-ui": "^1.1.0",
+    "motion-ui": "^1.2.2",
     "run-sequence": "^1.1.5",
     "yargs": "^3.31.0"
   },
@@ -71,7 +70,7 @@
     "package": "gulp package --production",
     "phpcs": "gulp phpcs",
     "phpcbf": "gulp phpcbf",
-    "postinstall": "bower install && gulp build",
+    "postinstall": "",
     "production": "gulp --production",
     "watch": "gulp"
   }
