@@ -10,52 +10,57 @@ var sequence    = require('run-sequence');
 var colors      = require('colors');
 var dateFormat  = require('dateformat');
 var del         = require('del');
+var cleanCSS    = require('gulp-clean-css');
 
 // Enter URL of your local server here
 // Example: 'http://localwebsite.dev'
-var URL = '';
+var URL = 'http://localhost';
 
 // Check for --production flag
 var isProduction = !!(argv.production);
 
 // Browsers to target when prefixing CSS.
-var COMPATIBILITY = ['last 2 versions', 'ie >= 9'];
+var COMPATIBILITY = [
+  'last 2 versions',
+  'ie >= 9',
+  'Android >= 2.3'
+];
 
 // File paths to various assets are defined here.
 var PATHS = {
   sass: [
-    'assets/components/foundation-sites/scss',
-    'assets/components/motion-ui/src',
-    'assets/components/fontawesome/scss',
+    'node_modules/foundation-sites/scss',
+    'node_modules/motion-ui/src',
+    'node_modules/fontawesome/scss',
   ],
   javascript: [
-    'assets/components/what-input/what-input.js',
-    'assets/components/foundation-sites/js/foundation.core.js',
-    'assets/components/foundation-sites/js/foundation.util.*.js',
+    'node_modules/what-input/what-input.js',
+    'node_modules/foundation-sites/js/foundation.core.js',
+    'node_modules/foundation-sites/js/foundation.util.*.js',
 
     // Paths to individual JS components defined below
-    'assets/components/foundation-sites/js/foundation.abide.js',
-    'assets/components/foundation-sites/js/foundation.accordion.js',
-    'assets/components/foundation-sites/js/foundation.accordionMenu.js',
-    'assets/components/foundation-sites/js/foundation.drilldown.js',
-    'assets/components/foundation-sites/js/foundation.dropdown.js',
-    'assets/components/foundation-sites/js/foundation.dropdownMenu.js',
-    'assets/components/foundation-sites/js/foundation.equalizer.js',
-    'assets/components/foundation-sites/js/foundation.interchange.js',
-    'assets/components/foundation-sites/js/foundation.magellan.js',
-    'assets/components/foundation-sites/js/foundation.offcanvas.js',
-    'assets/components/foundation-sites/js/foundation.orbit.js',
-    'assets/components/foundation-sites/js/foundation.responsiveMenu.js',
-    'assets/components/foundation-sites/js/foundation.responsiveToggle.js',
-    'assets/components/foundation-sites/js/foundation.reveal.js',
-    'assets/components/foundation-sites/js/foundation.slider.js',
-    'assets/components/foundation-sites/js/foundation.sticky.js',
-    'assets/components/foundation-sites/js/foundation.tabs.js',
-    'assets/components/foundation-sites/js/foundation.toggler.js',
-    'assets/components/foundation-sites/js/foundation.tooltip.js',
+    'node_modules/foundation-sites/js/foundation.abide.js',
+    'node_modules/foundation-sites/js/foundation.accordion.js',
+    'node_modules/foundation-sites/js/foundation.accordionMenu.js',
+    'node_modules/foundation-sites/js/foundation.drilldown.js',
+    'node_modules/foundation-sites/js/foundation.dropdown.js',
+    'node_modules/foundation-sites/js/foundation.dropdownMenu.js',
+    'node_modules/foundation-sites/js/foundation.equalizer.js',
+    'node_modules/foundation-sites/js/foundation.interchange.js',
+    'node_modules/foundation-sites/js/foundation.magellan.js',
+    'node_modules/foundation-sites/js/foundation.offcanvas.js',
+    'node_modules/foundation-sites/js/foundation.orbit.js',
+    'node_modules/foundation-sites/js/foundation.responsiveMenu.js',
+    'node_modules/foundation-sites/js/foundation.responsiveToggle.js',
+    'node_modules/foundation-sites/js/foundation.reveal.js',
+    'node_modules/foundation-sites/js/foundation.slider.js',
+    'node_modules/foundation-sites/js/foundation.sticky.js',
+    'node_modules/foundation-sites/js/foundation.tabs.js',
+    'node_modules/foundation-sites/js/foundation.toggler.js',
+    'node_modules/foundation-sites/js/foundation.tooltip.js',
 
     // Motion UI
-    'assets/components/motion-ui/motion-ui.js',
+    'node_modules/motion-ui/motion-ui.js',
 
     // Include your own custom scripts (located in the custom folder)
     'assets/javascript/custom/*.js',
@@ -85,7 +90,7 @@ gulp.task('browser-sync', ['build'], function() {
 
   var files = [
             '**/*.php',
-            'assets/images/**/*.{png,jpg,gif}',
+            'assets/img/**/*.{png,jpg,gif,svg}',
           ];
 
   browserSync.init(files, {
@@ -93,16 +98,13 @@ gulp.task('browser-sync', ['build'], function() {
     proxy: URL,
 
     // Port #
-    // port: PORT
+    // port: 80
   });
 });
 
 // Compile Sass into CSS
 // In production, the CSS is compressed
 gulp.task('sass', function() {
-  // Minify CSS if run with --production flag
-  var minifycss = $.if(isProduction, $.minifyCss());
-
   return gulp.src('assets/scss/foundation.scss')
     .pipe($.sourcemaps.init())
     .pipe($.sass({
@@ -115,7 +117,8 @@ gulp.task('sass', function() {
     .pipe($.autoprefixer({
       browsers: COMPATIBILITY
     }))
-    .pipe(minifycss)
+    // Minify CSS if run with --production flag
+    .pipe($.if(isProduction, cleanCSS()))
     .pipe($.if(!isProduction, $.sourcemaps.write('.')))
     .pipe(gulp.dest('assets/stylesheets'))
     .pipe(browserSync.stream({match: '**/*.css'}));
@@ -162,21 +165,11 @@ gulp.task('javascript', function() {
 
 // Copy task
 gulp.task('copy', function() {
-  // Motion UI
-  var motionUi = gulp.src('assets/components/motion-ui/**/*.*')
-    .pipe($.flatten())
-    .pipe(gulp.dest('assets/javascript/vendor/motion-ui'));
-
-  // What Input
-  var whatInput = gulp.src('assets/components/what-input/**/*.*')
-      .pipe($.flatten())
-      .pipe(gulp.dest('assets/javascript/vendor/what-input'));
-
   // Font Awesome
-  var fontAwesome = gulp.src('assets/components/fontawesome/fonts/**/*.*')
+  var fontAwesome = gulp.src('node_modules/fontawesome/fonts/**/*.*')
       .pipe(gulp.dest('assets/fonts'));
 
-  return merge(motionUi, whatInput, fontAwesome);
+  return merge(fontAwesome);
 });
 
 // Package task

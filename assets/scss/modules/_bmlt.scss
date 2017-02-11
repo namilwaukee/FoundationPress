@@ -1,0 +1,37 @@
+// Formats BMLT Simple Table
+.meetings-panel {
+  .bmlt_simple_meetings_div {
+    font-size: rem-calc(14);
+    margin: 0;
+    .bmlt_simple_meeting_one_meeting_town_div,
+    .bmlt_simple_meeting_one_meeting_weekday_div {
+      display: none;
+    }
+    .bmlt_simple_meeting_one_meeting_div {
+      // padding: rem-calc(2.5 5);
+      vertical-align: top;
+    }
+    .bmlt_simple_meeting_one_meeting_name_div {
+      font-weight: bold;
+    }
+    .bmlt_simple_meeting_one_meeting_time_div {
+      white-space: nowrap;
+    }
+    @include breakpoint(small only) {
+      td {
+        display: block;
+      }
+      .bmlt_simple_meeting_one_meeting_time_div {
+        display: inline-block;
+      }
+    }
+    @include breakpoint(large) {
+      td {
+        display: block;
+      }
+      .bmlt_simple_meeting_one_meeting_time_td {
+        display: inline-block;
+      }
+    }
+  }
+}
