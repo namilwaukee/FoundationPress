@@ -27,8 +27,12 @@ if (typeof jQuery != typeof undefined) {
     });
 
     // Add responsive wrappers for videos
-    $('iframe[src*="youtube.com"]').wrap("<div class='flex-video widescreen'/>");
-    $('iframe[src*="vimeo.com"]').wrap("<div class='flex-video widescreen vimeo'/>");
+    var videos = $('iframe[src*="vimeo.com"], iframe[src*="youtube.com"]');
+
+    videos.each(function () {
+        var el = $(this);
+        el.wrap('<div class="responsive-embed widescreen"/>');
+    });
 
   })(jQuery);
 }

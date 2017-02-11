@@ -9,7 +9,7 @@
 .icon {
   @extend %icon;
   &.service-symbol {
-    background-image: url('../images/svg/service-symbol.svg');
+    background-image: url('../img/svg/service-symbol.svg');
     background-size: cover;
     @at-root .logo-wrapper .service-symbol {
       width: rem-calc(50);
