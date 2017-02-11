@@ -5,6 +5,8 @@
 // WP overrides
 @import 'global/wp-admin'; // Fix issues with wp-admin bar positioning
 @import 'global/wp-overrides'; // Override the default WordPress styling for some elements
+@import 'global/accessibility';
+
 // Third-party libraries
 @import 'font-awesome';
 @import 'motion-ui';
@@ -13,24 +15,29 @@
 // Individual foundation components
 @include foundation-grid; // @include foundation-flex-grid;
 @include foundation-typography;
+@include foundation-forms;
 @include foundation-button;
-@include foundation-forms; // @include foundation-range-input;
-@include foundation-accordion; // @include foundation-accordion-menu;
+@include foundation-accordion;
+@include foundation-accordion-menu;
 @include foundation-badge;
 @include foundation-breadcrumbs;
 @include foundation-button-group;
 @include foundation-callout;
-@include foundation-close-button; // @include foundation-drilldown-menu;
-@include foundation-dropdown; // @include foundation-dropdown-menu;
-@include foundation-flex-video;
+@include foundation-card;
+@include foundation-close-button;
+@include foundation-menu;
+@include foundation-menu-icon;
+@include foundation-drilldown-menu;
+@include foundation-dropdown;
+@include foundation-dropdown-menu;
+@include foundation-responsive-embed;
 @include foundation-label;
 @include foundation-media-object;
-@include foundation-menu;
-@include foundation-off-canvas; // @include foundation-orbit;
-@include foundation-pagination; // @include foundation-progress-bar;
-// @include foundation-progress-element;
-// @include foundation-meter-element;
-// @include foundation-slider;
+@include foundation-off-canvas;
+@include foundation-orbit;
+@include foundation-pagination;
+@include foundation-progress-bar;
+@include foundation-slider;
 @include foundation-sticky;
 @include foundation-reveal; // @include foundation-switch;
 @include foundation-table;
@@ -40,21 +47,32 @@
 @include foundation-top-bar;
 @include foundation-visibility-classes;
 @include foundation-float-classes;
-@include foundation-menu-icon; // @include foundation-flex-classes;
+// @include foundation-flex-classes;
+
 // Motion UI
 @include motion-ui-transitions;
 @include motion-ui-animations;
-// Components
-@import 'components/typography';
-@import 'components/buttons';
-@import 'components/images';
-@import 'components/dividers';
-@import 'components/links';
-@import 'components/icons';
+
+/*
+  My custom styles:
+  Add your scss files below to structure your project styles
+*/
+
 // Modules
 @import 'modules/navigation';
 @import 'modules/footer';
 @import 'modules/sidebar';
+@import 'modules/editor-style';
+
+// Components
+@import 'components/typography';
+@import 'components/buttons';
+@import 'components/cards';
+@import 'components/images';
+@import 'components/dividers';
+@import 'components/links';
+@import 'components/icons';
+
 // Templates
 @import 'templates/front';
 @import 'templates/kitchen-sink';
