@@ -49,3 +49,6 @@ require_once( 'library/responsive-images.php' );
 
 /** If your site requires protocol relative url's for theme assets, uncomment the line below */
 // require_once( 'library/protocol-relative-theme-assets.php' );
+
+/** BMLT Plugin Settings */
+require_once( 'library/bmlt-settings.php' );

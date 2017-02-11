@@ -13,7 +13,7 @@ var del         = require('del');
 
 // Enter URL of your local server here
 // Example: 'http://localwebsite.dev'
-var URL = '';
+var URL = 'http://localhost';
 
 // Check for --production flag
 var isProduction = !!(argv.production);
@@ -93,7 +93,7 @@ gulp.task('browser-sync', ['build'], function() {
     proxy: URL,
 
     // Port #
-    // port: PORT
+    // port: 80
   });
 });
 

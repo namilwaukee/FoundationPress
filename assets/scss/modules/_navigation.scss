@@ -1,68 +1,85 @@
 /* Navigation breakpoints */
-
-.desktop-menu, .top-bar-left {
+.desktop-menu,
+.top-bar-left {
   @include show-for(medium);
 }
-
-#mobile-menu, .title-bar {
+#mobile-menu,
+.title-bar {
   @include hide-for(medium);
 }
-
 /* Mobile menu */
-
 .off-canvas {
- > ul.menu {
+  > ul.menu {
     height: 100vh;
-    padding: 1rem;
+    // padding: 1rem;
   }
 }
-
 .title-bar-title {
   a {
     font-size: 1rem;
     color: #B9B9B9;
   }
 }
-
 /* Tablet and desktop menu */
+$menu-height: rem-calc(45);
 .top-bar {
-
-  .menu .home a {
-    font-size: 1rem;
-    color: #B9B9B9;
-  }
-
-  .menu a {
-    height: 45px;
-    line-height: 45px;
-    color: #e6e6e6;
-    padding-top: 0;
-    padding-bottom: 0;
-    font-weight: bold;
-    font-size: 0.8rem;
-    line-height: 1;
-
-    &:hover:not(.button) {
-      background-color: #2a2a2a;
+  .menu {
+    a {
+      height: $menu-height;
+      // line-height: rem-calc(45);
+      // color: #e6e6e6;
+      padding-top: 0;
+      padding-bottom: 0;
+      font-weight: bold;
+      font-size: 0.8rem;
+      line-height: 1;
+      // &:hover:not(.button) {
+      //   background-color: #2a2a2a;
+      // }
+      @extend %uppercase;
+    }
+    .home > a {
+      font-size: 1rem;
+      // color: #B9B9B9;
+      // background: $white;
+      padding: 0;
+      margin: 0;
+      figure {
+        padding: 0;
+        margin: 0;
+        display: inline-block;
+        width: 100%;
+        height: $menu-height;
+      }
     }
   }
-
-  .menu>li:not(.menu-text)>a { padding: 1rem; }
-  .menu li:not(:last-child) { border-right: 1px solid #4e4e4e; }
-
+  .menu > li:not(.menu-text):not(.home) > a {
+    padding: 1rem;
+  }
+  .menu li:not(:last-child) {
+    border-right: 1px solid #4e4e4e;
+  }
   .dropdown.menu .submenu {
     background-color: #121212;
     color: #e6e6e6;
     border: 0;
   }
-
-  .dropdown.menu .has-submenu.is-down-arrow a { padding-right: 1rem; }
-  .dropdown.menu .has-submenu.is-down-arrow > a::after { border: 0; }
-
-  .dropdown.menu:first-child >
-    li.is-dropdown-submenu-parent >
-    a::after {
-      display: none;
-    }
-
+  .dropdown.menu .has-submenu.is-down-arrow a {
+    padding-right: 1rem;
+  }
+  .dropdown.menu .has-submenu.is-down-arrow > a::after {
+    border: 0;
+  }
+  .dropdown.menu:first-child > li.is-dropdown-submenu-parent > a::after {
+    display: none;
+  }
+}
+// Top Logo
+.logo-wrapper {
+  margin: $global-margin auto;
+  line-height: 0;
+  @extend .text-center;
+  a {
+    display: inline-block;
+  }
 }

@@ -12,7 +12,7 @@
 if ( have_comments() ) :
 	if ( (is_page() || is_single()) && ( ! is_home() && ! is_front_page()) ) :
 ?>
-	<section id="comments"><?php
+	<section id="comments" class="comments"><?php
 
 
 		wp_list_comments(
@@ -111,10 +111,10 @@ if ( comments_open() ) :
 			</label>
 			<textarea name="comment" id="comment" tabindex="4"></textarea>
 		</p>
-		<p id="allowed_tags" class="small"><strong>XHTML:</strong> 
+		<p id="allowed_tags" class="small"><strong>XHTML:</strong>
 			<?php
 				_e( 'You can use these tags:','foundationpress' );
-			?> 
+			?>
 			<code>
 				<?php echo allowed_tags(); ?>
 			</code>
