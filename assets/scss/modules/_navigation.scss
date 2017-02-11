@@ -43,27 +43,8 @@
     color: #B9B9B9;
   }
 }
-<<<<<<< HEAD
-/* Tablet and desktop menu */
-$menu-height: rem-calc(45);
-.top-bar {
-  .menu {
-    a {
-      height: $menu-height;
-      // line-height: rem-calc(45);
-      // color: #e6e6e6;
-      padding-top: 0;
-      padding-bottom: 0;
-      font-weight: bold;
-      font-size: 0.8rem;
-      line-height: 1;
-      // &:hover:not(.button) {
-      //   background-color: #2a2a2a;
-      // }
-      @extend %uppercase;
-=======
-
 // Tablet and desktop menu
+$menu-height: rem-calc(45);
 .top-bar {
   .menu .home a {
     font-size: 1rem;
@@ -71,8 +52,8 @@ $menu-height: rem-calc(45);
   }
 
   .menu a {
-    height: 45px;
-    line-height: 45px;
+    height: $menu-height;
+    line-height: $menu-height;
     color: #e6e6e6;
     padding-top: 0;
     padding-bottom: 0;
