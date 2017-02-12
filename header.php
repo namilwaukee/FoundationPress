@@ -28,23 +28,23 @@
   <?php do_action( 'foundationpress_layout_start' ); ?>
 
   <header id="masthead" class="site-header masthead" role="banner">
-    <div class="logo-wrapper">
-      <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><figure class="icon service-symbol"><span class="show-for-sr"><?php bloginfo( 'name' ); ?></span></figure></a>
-    </div>
     <div class="title-bar" data-responsive-toggle="site-navigation">
-      <button class="menu-icon" type="button" data-toggle="mobile-menu"></button>
-      <div class="title-bar-title">
-        <!-- <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a> -->
+      <div class="title-bar-left">
+        <div class="logo-wrapper">
+          <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><figure class="icon service-symbol"><span class="show-for-sr"><?php bloginfo( 'name' ); ?></span></figure></a>
+        </div>
+        <span class="title-bar-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></span>
+      </div>
+      <div class="title-bar-right">
+        <button class="menu-icon" type="button" data-open="mobile-menu"></button>
       </div>
     </div>
 
     <nav id="site-navigation" class="main-navigation top-bar" role="navigation">
-      <div class="top-bar-left">
-        <ul class="menu">
-          <!-- <li class="home"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></li> -->
-        </ul>
+      <div class="logo-wrapper text-center">
+        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><figure class="icon service-symbol"><span class="show-for-sr"><?php bloginfo( 'name' ); ?></span></figure></a>
       </div>
-      <div class="top-bar-right">
+      <div class="top-bar-center text-center">
         <?php foundationpress_top_bar_r(); ?>
 
         <?php if ( ! get_theme_mod( 'wpt_mobile_menu_layout' ) || get_theme_mod( 'wpt_mobile_menu_layout' ) === 'topbar' ) : ?>

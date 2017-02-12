@@ -1,6 +1,6 @@
 %icon {
-  min-width: rem-calc(20);
-  min-height: rem-calc(20);
+  min-width: rem-calc(30);
+  min-height: rem-calc(30);
   background-repeat: no-repeat;
   background-position: center center;
   display: inline-block;
@@ -11,7 +11,7 @@
   &.service-symbol {
     background-image: url('../img/svg/service-symbol.svg');
     background-size: cover;
-    @at-root .logo-wrapper .service-symbol {
+    @at-root .top-bar .service-symbol {
       width: rem-calc(50);
       height: rem-calc(50);
     }
