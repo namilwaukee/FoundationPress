@@ -7,9 +7,9 @@
  * @since FoundationPress 1.0.0
  */
 
-register_nav_menus(array(
-	'top-bar-r'  => 'Right Top Bar',
-	'mobile-nav' => 'Mobile',
+register_nav_menus( array(
+	'top-bar-r'  => esc_html__( 'Right Top Bar', 'foundationpress' ),
+	'mobile-nav' => esc_html__( 'Mobile', 'foundationpress' ),
 ));
 
 
@@ -43,7 +43,7 @@ if ( ! function_exists( 'foundationpress_mobile_nav' ) ) {
 			'menu'           => __( 'mobile-nav', 'foundationpress' ),
 			'menu_class'     => 'vertical menu',
 			'theme_location' => 'mobile-nav',
-			'items_wrap'     => '<ul id="%1$s" class="%2$s" data-accordion-menu>%3$s</ul>',
+			'items_wrap'     => '<ul id="%1$s" class="%2$s" data-accordion-menu data-submenu-toggle="true">%3$s</ul>',
 			'fallback_cb'    => false,
 			'walker'         => new Foundationpress_Mobile_Walker(),
 		));
@@ -113,9 +113,40 @@ if ( ! function_exists( 'foundationpress_breadcrumb' ) ) {
 			} elseif ( is_category() ) {
 
 				// Category page
-				echo '<li class="item-current item-cat-' . $category[0]->term_id . ' item-cat-' . $category[0]->category_nicename . '"><strong class="bread-current bread-cat-' . $category[0]->term_id . ' bread-cat-' . $category[0]->category_nicename . '">' . $category[0]->cat_name . '</strong></li>';
+				// Get the current category
+				$current_category = $wp_query->queried_object;
+				echo '<li class="item-current item-cat-' . $current_category->term_id . ' item-cat-' . $current_category->category_nicename . '"><strong class="bread-current bread-cat-' . $current_category->term_id . ' bread-cat-' . $current_category->category_nicename . '">' . $current_category->cat_name . '</strong></li>';
 
-			} elseif ( is_page() ) {
+			} elseif ( is_tax() ) {
+
+				// Tax archive page
+				$queried_object = get_queried_object();
+				$name = $queried_object->name;
+				$slug = $queried_object->slug;
+				$tax = $queried_object->taxonomy;
+				$term_id = $queried_object->term_id;
+				$parent = $queried_object->parent;
+
+				if( $parent ) {
+					$parents = [];
+					// Loop through all term ancestors
+					while ( $parent ) {
+						$parent_term = get_term($parent, $tax);
+						// The output will be reversed, so separator goes first
+						if ( $separatorclass ) {
+							$parents[] = '<li class="separator separator-' . $parent . '"> ' . $separator . ' </li>';
+						}
+						$parents[] = '<li class="item-parent item-parent-' . $parent . '"><a class="bread-parent bread-parent-' . $parent . '" href="' . get_term_link($parent) . '" title="' . $parent_term->name . '">' . $parent_term->name . '</a></li>';
+
+						$parent = $parent_term->parent;
+					}
+
+					echo implode( array_reverse( $parents ) );
+				}
+
+				echo '<li class="item-current item-tax-' . $term_id . ' item-tax-' . $slug . '">' . $name . '</li>';
+
+		} elseif ( is_page() ) {
 
 				// Standard page
 				if ( $post->post_parent ) {
@@ -212,7 +243,12 @@ if ( ! function_exists( 'foundationpress_breadcrumb' ) ) {
 			} elseif ( is_search() ) {
 
 				// Search results page
-				echo '<li class="current item-current-' . get_search_query() . '">Search results for: ' . get_search_query() . '</li>';
+				echo '<li class="current item-current-search">Search results for: ' . get_search_query() . '</li>';
+
+			} elseif ( is_post_type_archive() ) {
+
+				// Custom Post Type Archive Page
+				echo '<li class="current">' . post_type_archive_title( '', false ) . '</li>';
 
 			} elseif ( is_404() ) {
 

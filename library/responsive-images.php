@@ -41,13 +41,17 @@ function foundationpress_adjust_image_sizes_attr( $sizes, $size ) {
 
 	// Full width page template
 	if ( is_page_template( 'page-templates/page-full-width.php' ) ) {
-		1200 < $width && $sizes = '(max-width: 1199px) 98vw, 1200px';
-		1200 > $width && $sizes = '(max-width: 1199px) 98vw, ' . $width . 'px';
-
-	// Default 3/4 column post/page layout
-	} else {
-		770 < $width && $sizes = '(max-width: 639px) 98vw, (max-width: 1199px) 64vw, 770px';
-		770 > $width && $sizes = '(max-width: 639px) 98vw, (max-width: 1199px) 64vw, ' . $width . 'px';
+		if ( 1200 < $width ) {
+			$sizes = '(max-width: 1199px) 98vw, 1200px';
+		} else {
+			$sizes = '(max-width: 1199px) 98vw, ' . $width . 'px';
+		}
+	} else { // Default 3/4 column post/page layout
+		if ( 770 < $width ) {
+			$sizes = '(max-width: 639px) 98vw, (max-width: 1199px) 64vw, 770px';
+		} else {
+			$sizes = '(max-width: 639px) 98vw, (max-width: 1199px) 64vw, ' . $width . 'px';
+		}
 	}
 
 	return $sizes;
@@ -56,7 +60,9 @@ add_filter( 'wp_calculate_image_sizes', 'foundationpress_adjust_image_sizes_attr
 
 // Remove inline width and height attributes for post thumbnails
 function remove_thumbnail_dimensions( $html, $post_id, $post_image_id ) {
-	$html = preg_replace( '/(width|height)=\"\d*\"\s/', '', $html );
-	return $html;
+    if(!strpos($html, 'attachment-shop_single')) {
+        $html = preg_replace( '/(width|height)=\"\d*\"\s/', '', $html );
+    }
+    return $html;
 }
 add_filter( 'post_thumbnail_html', 'remove_thumbnail_dimensions', 10, 3 );

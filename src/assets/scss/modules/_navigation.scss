@@ -1,0 +1,179 @@
+// Navigation breakpoints
+.mobile-menu,
+.site-title-bar {
+  @include hide-for(medium);
+}
+
+.desktop-menu,
+.site-navigation .top-bar-left {
+  @include show-for(medium);
+}
+<<<<<<< HEAD:assets/scss/modules/_navigation.scss
+#mobile-menu,
+.title-bar {
+  @include hide-for(medium);
+=======
+
+// Site title
+.site-desktop-title a {
+  font-weight: bold;
+>>>>>>> olefredrik/master:src/assets/scss/modules/_navigation.scss
+}
+// Mobile menu
+.mobile-menu {
+  display: none; // prevents repaint caused by JS hiding menu onload
+}
+
+.off-canvas {
+  > ul.menu {
+    height: 100vh;
+    padding: 1rem;
+
+    a {
+      color: $white;
+      font-weight: 600;
+      font-size: rem-calc(15);
+    }
+<<<<<<< HEAD:assets/scss/modules/_navigation.scss
+
+    .is-accordion-submenu-parent > a::after {
+      display: block;
+      width: 0;
+      height: 0;
+      border: inset 6px;
+      content: '';
+      border-bottom-width: 0;
+      border-top-style: solid;
+      border-color: $white transparent transparent;
+      position: absolute;
+      top: 50%;
+      margin-top: -3px;
+      right: 1rem;
+    }
+  }
+
+  .menu .active > a { background-color: lighten($outer-space, 10%); }
+=======
+  }
+
+  .menu .active > a { background-color: #ccc; }
+
+>>>>>>> olefredrik/master:src/assets/scss/modules/_navigation.scss
+}
+.title-bar-title {
+  a {
+    font-size: 1rem;
+    color: #B9B9B9;
+  }
+}
+<<<<<<< HEAD:assets/scss/modules/_navigation.scss
+// Tablet and desktop menu
+$menu-height: rem-calc(45);
+=======
+
+.mobile-menu,
+.mobile-off-canvas-menu {
+
+  .menu .is-active > a {
+    background-color: lighten($dark-nav-color, 5%);
+  }
+}
+
+// Tablet and desktop menu
+
+>>>>>>> olefredrik/master:src/assets/scss/modules/_navigation.scss
+.top-bar {
+
+  .top-bar-title a {
+    font-size: 1rem;
+    color: #B9B9B9;
+    padding-left: 1rem;
+    line-height: 1.8;
+  }
+
+  .menu a {
+<<<<<<< HEAD:assets/scss/modules/_navigation.scss
+    height: $menu-height;
+    line-height: $menu-height;
+=======
+>>>>>>> olefredrik/master:src/assets/scss/modules/_navigation.scss
+    color: #e6e6e6;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-weight: bold;
+    font-size: 0.8rem;
+    line-height: 1;
+
+    &:hover:not(.button) {
+      background-color: #42525D;
+    }
+    .home > a {
+      font-size: 1rem;
+      // color: #B9B9B9;
+      // background: $white;
+      padding: 0;
+      margin: 0;
+      figure {
+        padding: 0;
+        margin: 0;
+        display: inline-block;
+        width: 100%;
+        height: $menu-height;
+      }
+    }
+  }
+  .menu > li:not(.menu-text):not(.home) > a {
+    padding: 1rem;
+  }
+  .menu li:not(:last-child) {
+    border-right: 1px solid #4e4e4e;
+  }
+
+  .menu .active > a { background-color: #ccc; }
+
+  .menu>li:not(.menu-text)>a { padding: 1rem; }
+  .menu li:not(:last-child) { border-right: 1px solid #4e4e4e; }
+
+  .dropdown.menu .submenu { border: 0; }
+  .dropdown.menu .has-submenu.is-down-arrow a { padding-right: 1rem; }
+  .dropdown.menu .has-submenu.is-down-arrow > a::after { border: 0; }
+  .dropdown.menu:first-child > li.is-dropdown-submenu-parent > a::after { display: none; }
+}
+
+<<<<<<< HEAD:assets/scss/modules/_navigation.scss
+// Top Logo
+.logo-wrapper {
+  margin: $global-margin auto;
+  line-height: 0;
+  @extend .text-center;
+  a {
+    display: inline-block;
+  }
+}
+
+// Basic styles for post navigation. Nicolas Gallagher's "Micro clearfix"
+// https://css-tricks.com/snippets/css/clear-fix/
+.post-navigation:before,
+.post-navigation:after {
+  content: "";
+  display: table;
+=======
+.site-navigation {
+  @include breakpoint(small only) {
+    padding: 0; // prevents container visibility on small screens
+  }
+}
+
+// WP post navigation
+.post-navigation {
+  @include clearfix;
+>>>>>>> olefredrik/master:src/assets/scss/modules/_navigation.scss
+}
+
+.nav-previous {
+  float:left;
+}
+
+.nav-next {
+  float:right;
+}

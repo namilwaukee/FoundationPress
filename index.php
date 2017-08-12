@@ -15,7 +15,11 @@
 
 get_header(); ?>
 
+<<<<<<< HEAD
 <div id="page" class="page" role="main">
+=======
+<div class="main-wrap" role="main">
+>>>>>>> olefredrik/master
 	<article class="main-content">
 	<?php if ( have_posts() ) : ?>
 
